@@ -6,12 +6,12 @@ import EditCompleted from "./EditCompleted";
 
 const TodosList = ({ filteredTodos, setTodos, todos }) => {
   return (
-    <div className="border bg-white rounded-md">
+    <div className="border bg-white rounded-t-md">
       {filteredTodos.map((todo) => (
         <div key={todo._id} className="py-5  border-b">
           <div className="flex justify-between items-center px-4">
             <EditCompleted todos={todos} setTodos={setTodos} id={todo._id} completed={todo.completed} />
-            <h2 className={todo.completed ? "line-through" : ""}>
+            <h2 className={`text-xl capitalize ${todo.completed? 'line-through' : ""}`}>
               {todo.content}
             </h2>
             <DeleteBtn todos={todos} setTodos={setTodos} id={todo._id} />

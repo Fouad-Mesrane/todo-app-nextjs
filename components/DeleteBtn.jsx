@@ -21,7 +21,7 @@ const DeleteBtn = ({ id, todos, setTodos }) => {
   };
   return (
     <button onClick={() => deleteTodo(id)}>
-      <HiOutlineTrash size={24} className="text-red-400" />
+      <HiOutlineTrash size={24} className="text-gray-500" />
     </button>
   );
 };

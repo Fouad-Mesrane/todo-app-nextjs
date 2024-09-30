@@ -25,13 +25,16 @@ const Footer = ({ setFilter, setTodos, todos, filteredTodos, filter }) => {
     });
 
     await Promise.all(deletePromises);
-    const updatedTodos = todos.filter(todo => !todo.completed);
+    const updatedTodos = todos.filter((todo) => !todo.completed);
     setTodos(updatedTodos);
   };
   return (
-    <footer className="flex w-full justify-between bg-white py-5 px-4 ">
-      <p>{itemsLeft} Items left</p>
-      <div className="flex gap-4">
+    <>
+      <div className="flex w-full justify-between items-center rounded-b-md bg-white py-5 px-5 border-b-2">
+        <p>{itemsLeft} Items left</p>
+        <button onClick={handleClearCompleted}>Clear Completed</button>
+      </div>
+      <footer className="flex w-full justify-center mt-8 bg-white gap-8 py-5  rounded-md">
         <button
           className={`hover:underline ${filter === "all" ? "font-bold" : ""}`}
           onClick={() => handleFilterChange("all")}
@@ -54,9 +57,8 @@ const Footer = ({ setFilter, setTodos, todos, filteredTodos, filter }) => {
         >
           Completed
         </button>
-      </div>
-      <button onClick={handleClearCompleted}>Clear Completed</button>
-    </footer>
+      </footer>
+    </>
   );
 };
 
