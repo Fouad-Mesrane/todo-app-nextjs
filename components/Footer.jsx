@@ -1,6 +1,10 @@
+"use client";
 import React from "react";
+import { useTodoContext } from "./TodoProvider";
 
-const Footer = ({ setFilter, setTodos, todos, filteredTodos, filter }) => {
+const Footer = () => {
+  const { todos, setTodos, filter, setFilter, filteredTodos } =
+    useTodoContext();
   const itemsLeft = filteredTodos.filter((todo) => !todo.completed).length;
 
   const handleFilterChange = (newFilter) => {
@@ -31,7 +35,9 @@ const Footer = ({ setFilter, setTodos, todos, filteredTodos, filter }) => {
   return (
     <>
       <div className="flex w-full justify-between items-center rounded-b-md bg-white py-5 px-5 border-b-2">
-        <p>{itemsLeft} Items left</p>
+        <p>
+          {itemsLeft} {itemsLeft === 1 ? "Item" : "Items"} left
+        </p>
         <button onClick={handleClearCompleted}>Clear Completed</button>
       </div>
       <footer className="flex w-full justify-center mt-8 bg-white gap-8 py-5  rounded-md">

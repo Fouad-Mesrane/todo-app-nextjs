@@ -1,23 +1,18 @@
-"use client";
-import { useRouter } from "next/navigation";
 import React from "react";
 import { HiOutlineTrash } from "react-icons/hi";
-const DeleteBtn = ({ id, todos, setTodos }) => {
-  const router = useRouter();
+import { useTodoContext } from "./TodoProvider";
+const DeleteBtn = ({ id }) => {
   const deleteTodo = async (id) => {
-
+    const { todos, setTodos } = useTodoContext();
     try {
-
-        const filteredTodos = todos.filter(todo => todo._id !== id)
-        setTodos(filteredTodos)
-        const res = await fetch(`http://localhost:3000/api/todos?id=${id}`, {
-            method: "DELETE",
-          });
-         
+      const filteredTodos = todos.filter((todo) => todo._id !== id);
+      setTodos(filteredTodos);
+      const res = await fetch(`http://localhost:3000/api/todos?id=${id}`, {
+        method: "DELETE",
+      });
     } catch (error) {
-        console.log(error)
+      console.log(error);
     }
-  
   };
   return (
     <button onClick={() => deleteTodo(id)}>

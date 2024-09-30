@@ -1,4 +1,7 @@
-const EditCompleted = ({ id, completed, setTodos, todos }) => {
+import { useTodoContext } from "./TodoProvider";
+
+const EditCompleted = ({ id, completed }) => {
+  const { todos, setTodos } = useTodoContext();
   const handleChange = async (id) => {
     try {
       const updatedTodos = todos.map((todo) =>

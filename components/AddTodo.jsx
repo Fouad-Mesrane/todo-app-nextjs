@@ -1,10 +1,11 @@
 "use client";
 
 import React, { useState } from "react";
+import { useTodoContext } from "./TodoProvider";
 
-const AddTodo = ({ todos, setTodos }) => {
+const AddTodo = () => {
   const [todo, setTodo] = useState("");
-
+  const { todos, setTodos } = useTodoContext();
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!todo) {
@@ -12,10 +13,7 @@ const AddTodo = ({ todos, setTodos }) => {
       return;
     }
 
-   
     try {
-     
-
       const res = await fetch("http://localhost:3000/api/todos", {
         method: "POST",
         headers: {
@@ -23,15 +21,14 @@ const AddTodo = ({ todos, setTodos }) => {
         },
         body: JSON.stringify({
           content: todo,
-          completed : false
+          completed: false,
         }),
       });
-     
 
       if (res.ok) {
-        const data = await res.json()
-       
-       setTodos([...todos, data])
+        const data = await res.json();
+
+        setTodos([...todos, data]);
         setTodo("");
       } else {
         throw new Error("Failed to create new todo");
